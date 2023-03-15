@@ -62,7 +62,7 @@ def isItFinished(id: str):
     print('get new token.......')
     r = session.get('https://neon.today/index.php/surfing/isitfinished/' + id)
 
-    if r.text == 'error':
+    if r.text == 'error' or r.text == '':
         isError = True
         print("can't get new token")
         # sys.exit("can't get new token")
@@ -77,12 +77,7 @@ def finish(token: str):
     print('get new id.......')
     r = session.get('https://neon.today/index.php/surfing/fin/' + token)
 
-    if r.text == 'error':
-        isError = True
-        print("can't get new id, " +  r.text)
-        # sys.exit("can't get new id, " +  r.text)
-
-    elif 'id' in r.json():
+    if 'id' in r.text:
         id = r.json()['id']
         print('id:', id)
 
@@ -117,28 +112,44 @@ f = open("accounts.txt", "r")
 emails = f.readlines()
 f.close()
 
-for email in emails:
-    
-    changeIP()
-    # login(input("email:"))
-    login(email.strip())
-    earn()
+startAt = int(input('Start at:'))
 
-    while isError == False:
-        isItFinished(id)
-        finish(token)
+while True:
+    for i in range(len(emails)):
 
-        print('getting balance......')
-        currentBalance = balance()
-        print('current balance:', currentBalance)
+        if i < startAt:
+            continue
+        elif startAt != 0:
+            startAt = 0
 
-    totalBalance += currentBalance
-    session = requests.Session()
-    cookie = ""
-    id = ""
-    token = ""
-    startBalance = 0.0
-    currentBalance = 0.0
-    isError = False
+        email = emails[i]
 
-print('Fished Total Balance is:', totalBalance)
+        changeIP()
+        # login(input("email:"))
+        login(email.strip())
+        earn()
+
+        while isError == False:
+            try:
+                isItFinished(id)
+                finish(token)
+
+                print('getting balance......')
+                currentBalance = balance()
+                print('current balance:', currentBalance)
+                print('total balance:', currentBalance + totalBalance)
+                
+            except:
+                isError = True
+                print('except')
+
+        totalBalance += currentBalance
+        session = requests.Session()
+        cookie = ""
+        id = ""
+        token = ""
+        startBalance = 0.0
+        currentBalance = 0.0
+        isError = False
+
+    print('Fished Total Balance is:', totalBalance)
