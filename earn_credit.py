@@ -96,6 +96,8 @@ def checkIP() -> str:
     return r.json()['ip']
 
 def changeIP():
+    global lastIP
+    
     os.system('windscribe connect')
 
     ip = checkIP()
