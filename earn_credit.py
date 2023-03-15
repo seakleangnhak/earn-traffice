@@ -87,20 +87,21 @@ def finish(token: str):
         # sys.exit("can't get new id, " + r.json())
 
 def checkIP() -> str:
-    r = requests.get('https://api.ipify.org/?format=json')
-    return r.json()['ip']
+    return ''
+    # r = requests.get('https://api.ipify.org/?format=json')
+    # return r.json()['ip']
 
 def changeIP():
-    global lastIP
+    # global lastIP
     
     os.system('windscribe connect')
 
-    ip = checkIP()
+    # ip = checkIP()
 
-    if lastIP == ip:
-        changeIP()
-    else:
-        lastIP = ip
+    # if lastIP == ip:
+    #     changeIP()
+    # else:
+    #     lastIP = ip
 
 
 
@@ -138,7 +139,7 @@ while True:
                 currentBalance = balance()
                 print('current balance:', currentBalance)
                 print('total balance:', currentBalance + totalBalance)
-                
+
             except:
                 isError = True
                 print('except')
