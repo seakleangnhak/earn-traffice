@@ -1,6 +1,7 @@
 import requests
 # import sys
 import os
+import numpy as np
 from fake_useragent import UserAgent
 
 ua = UserAgent()
@@ -15,6 +16,7 @@ currentBalance = 0.0
 totalBalance = 0.0
 lastIP = ''
 isError = False
+links = ['']
 
 
 def login(email: str):
@@ -86,6 +88,42 @@ def finish(token: str):
         print("can't get new id, " + r.json())
         # sys.exit("can't get new id, " + r.json())
 
+def addLink(link: str):
+    print('Add Link:', link)
+    payload = dict(url=link, duration='45') #duration = 20(1), 30(1.5), 45(2), 60(3), 90(4)
+    r = session.post('https://neon.today/index.php/surfing/add', data=payload)
+    
+    if 'Success' in r.text:
+        print('add link success')
+
+def getLinkID() -> int|None:
+    id: int|None = None
+    r = session.get('https://neon.today/advertise/surfing')
+
+    if ('class="info" data-id="' in r.text):
+        id = r.text.split('class="info" data-id="')[1].split('"')[0]
+        print('link id:', id)
+
+    return id
+
+def addCredit(id: str, amt: float):
+
+    r = session.get('https://neon.today/index.php/surfing/add_credits/'+id+'/'+str(amt))
+
+    if 'Success' in r.text:
+        print('add link success')
+
+def checkLink():
+    linkID = getLinkID()
+    
+    if linkID == None:
+        addLink(link)
+        checkLink()
+    
+    else:
+        amt = balance()
+        addCredit(linkID, amt)
+
 def checkIP() -> str:
     return ''
     # r = requests.get('https://api.ipify.org/?format=json')
@@ -124,6 +162,7 @@ while True:
             startAt = 0
 
         email = emails[i]
+        link = np.random.choice(links)
 
         changeIP()
         # login(input("email:"))
@@ -143,6 +182,9 @@ while True:
             except:
                 isError = True
                 print('except')
+
+
+        checkLink()
 
         totalBalance += currentBalance
         session = requests.Session()
