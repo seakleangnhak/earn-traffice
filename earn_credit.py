@@ -97,6 +97,7 @@ def finish(token: str):
 
 def addLink(link: str):
     global durations
+    global isError
 
     print('Add Link:', link)
     dur = np.random.choice(durations)
@@ -105,6 +106,8 @@ def addLink(link: str):
     
     if 'Success' in r.text:
         print('add link success')
+    else:
+        isError = True
 
 def getLinkID() -> int:
     id: int = None
@@ -124,10 +127,16 @@ def addCredit(id: str, amt: float):
         print('add link success')
 
 def checkLink():
+    global isError
+
     linkID = getLinkID()
     
     if linkID == None:
         addLink(link)
+
+        if isError:
+            return
+        
         checkLink()
     
     else:
@@ -191,11 +200,16 @@ while True:
                 print('current balance:', currentBalance)
                 print('total balance:', currentBalance + totalBalance)
 
-            checkLink()
-
         except:
             isError = True
             print('except')
+
+        try:
+            checkLink()
+        except:
+            isError = True
+            print('except')
+
 
         totalBalance += currentBalance
         session = requests.Session()
