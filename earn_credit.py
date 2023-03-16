@@ -91,7 +91,7 @@ def finish(token: str):
 
 def addLink(link: str):
     global durations
-    
+
     print('Add Link:', link)
     dur = np.random.choice(durations)
     payload = dict(url=link, duration=dur) #duration = 20(1), 30(1.5), 45(2), 60(3), 90(4)
@@ -155,7 +155,7 @@ f = open("accounts.txt", "r")
 emails = f.readlines()
 f.close()
 
-emails = [input('Email:')]
+# emails = [input('Email:')]
 startAt = int(input('Start at:'))
 
 while True:
