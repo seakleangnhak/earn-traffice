@@ -1,14 +1,9 @@
-# from time import sleep
+import pyshorteners
 
-# count = 0
-# while True:
-#     count += 1
-#     print('count:', count)
-#     sleep(1)
+long_url = input("Enter the URL to shorten: ")
 
-i = [0,1]
+shortener = pyshorteners.Shortener()
 
-try:
-    j = i.json()
-except:
-    print('except')
+short_url = shortener.tinyurl.short(long_url)
+ 
+print("The Shortened URL is: " + short_url)

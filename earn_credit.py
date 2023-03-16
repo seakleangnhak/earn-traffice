@@ -107,6 +107,7 @@ def addLink(link: str):
     if 'Success' in r.text:
         print('add link success')
     else:
+        print('>>>>>>>>>>>>> Add Link Error <<<<<<<<<<<<<<')
         isError = True
 
 def getLinkID() -> int:
@@ -123,11 +124,14 @@ def addCredit(id: str, amt: float):
 
     r = session.get('https://neon.today/index.php/surfing/add_credits/'+id+'/'+str(amt))
 
-    if 'Success' in r.text:
-        print('add link success')
+    if 'Кредиты успешно добавлены' in r.text:
+        print('add Credit success')
+    else:
+        print('>>>>>>>>>>>>> Add Credit Error <<<<<<<<<<<<<<')
 
 def checkLink():
     global isError
+    global link
 
     linkID = getLinkID()
     
