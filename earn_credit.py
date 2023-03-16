@@ -18,11 +18,11 @@ lastIP = ''
 isError = False
 durations = ['20', '30', '45']
 links = [
-    'https://www.highrevenuegate.com/dpuqt59s?key=5b326877b89837e807bbdaaa5b20fa23',
-    'https://www.highrevenuegate.com/ub06he5u?key=a13905a22fa99e8871c3393ecff49b41',
-    'https://www.highrevenuegate.com/m7mj7ph5h?key=3154f3869a03bfcd8888b3d7facf713e',
-    'https://www.highrevenuegate.com/bv2wiekjr9?key=55aebd97f7e3d16d6fe0d1d7244be60c',
-    'https://www.highrevenuegate.com/h8a5w2y4?key=7d48570f30c4946d2cb81b9e76305f7f'
+    'https://rb.gy/zbqejd',
+    'https://shorturl.at/bhyHJ',
+    'https://tinyurl.com/ynhbhdkv',
+    'https://t.ly/QYB3',
+    'https://reurl.cc/Y8E8LX'
     ]
 
 
