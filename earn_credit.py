@@ -106,8 +106,8 @@ def addLink(link: str):
     if 'Success' in r.text:
         print('add link success')
 
-def getLinkID() -> int|None:
-    id: int|None = None
+def getLinkID() -> int:
+    id: int = None
     r = session.get('https://neon.today/advertise/surfing')
 
     if ('class="info" data-id="' in r.text):
