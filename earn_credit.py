@@ -95,7 +95,7 @@ def finish(token: str):
         print("can't get new id, " + r.json())
         # sys.exit("can't get new id, " + r.json())
 
-def addLink(link: str):
+def addLink(link: str) -> bool:
     global durations
     global isError
 
@@ -106,9 +106,10 @@ def addLink(link: str):
     
     if 'Success' in r.text:
         print('add link success')
+        return True
     else:
         print('>>>>>>>>>>>>> Add Link Error <<<<<<<<<<<<<<')
-        isError = True
+        return False
 
 def getLinkID() -> int:
     id: int = None
@@ -136,12 +137,8 @@ def checkLink():
     linkID = getLinkID()
     
     if linkID == None:
-        addLink(link)
-
-        if isError:
-            return
-        
-        checkLink()
+        if addLink(link):
+            checkLink()
     
     else:
         amt = balance()
