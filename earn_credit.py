@@ -16,7 +16,8 @@ currentBalance = 0.0
 totalBalance = 0.0
 lastIP = ''
 isError = False
-links = ['']
+links = ['https://www.highrevenuegate.com/dpuqt59s?key=5b326877b89837e807bbdaaa5b20fa23']
+durations = ['20', '30', '45']
 
 
 def login(email: str):
@@ -89,8 +90,11 @@ def finish(token: str):
         # sys.exit("can't get new id, " + r.json())
 
 def addLink(link: str):
+    global durations
+    
     print('Add Link:', link)
-    payload = dict(url=link, duration='45') #duration = 20(1), 30(1.5), 45(2), 60(3), 90(4)
+    dur = np.random.choice(durations)
+    payload = dict(url=link, duration=dur) #duration = 20(1), 30(1.5), 45(2), 60(3), 90(4)
     r = session.post('https://neon.today/index.php/surfing/add', data=payload)
     
     if 'Success' in r.text:
@@ -151,6 +155,7 @@ f = open("accounts.txt", "r")
 emails = f.readlines()
 f.close()
 
+emails = [input('Email:')]
 startAt = int(input('Start at:'))
 
 while True:
@@ -165,7 +170,6 @@ while True:
         link = np.random.choice(links)
 
         changeIP()
-        # login(input("email:"))
         login(email.strip())
         earn()
 
