@@ -155,9 +155,9 @@ def changeIP():
 
 
 
-
+accountNum = input('Account Number: ')
 lastIP = checkIP()
-f = open("accounts.txt", "r")
+f = open('accounts'+accountNum+'.txt', 'r')
 emails = f.readlines()
 f.close()
 

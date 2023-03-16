@@ -6,8 +6,10 @@ from fake_useragent import UserAgent
 
 fake = Faker()
 ua = UserAgent()
+accountNum = input('Account Number: ')
+qtyAcc = int(input('QTY for new account: '))
 
-for i in range(554) :
+for i in range(qtyAcc) :
 
     gender = np.random.choice(["M", "F"], p=[0.5, 0.5])
     first_name = fake.first_name_male() if gender =="M" else fake.first_name_female()
@@ -22,7 +24,7 @@ for i in range(554) :
     if 'Success' in r.text:
         print('Register Success')
 
-        f = open("accounts.txt", "a")
+        f = open('accounts'+accountNum+'.txt', 'a')
         f.write(email + '\n')
         f.close()
 
