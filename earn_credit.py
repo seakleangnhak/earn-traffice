@@ -175,12 +175,12 @@ while True:
         email = emails[i]
         link = np.random.choice(links)
 
-        changeIP()
-        login(email.strip())
-        earn()
+        try:
+            changeIP()
+            login(email.strip())
+            earn()
 
-        while isError == False:
-            try:
+            while isError == False:
                 isItFinished(id)
                 finish(token)
 
@@ -189,12 +189,11 @@ while True:
                 print('current balance:', currentBalance)
                 print('total balance:', currentBalance + totalBalance)
 
-            except:
-                isError = True
-                print('except')
+            checkLink()
 
-
-        checkLink()
+        except:
+            isError = True
+            print('except')
 
         totalBalance += currentBalance
         session = requests.Session()
