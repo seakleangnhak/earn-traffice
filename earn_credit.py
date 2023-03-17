@@ -4,6 +4,7 @@ import os
 import signal
 import numpy as np
 from fake_useragent import UserAgent
+from time import sleep
 
 ua = UserAgent()
 
@@ -211,12 +212,14 @@ while True:
         except Exception as e:
             isError = True
             print('except '+str(i)+':', str(e))
+            sleep(1)
 
         try:
             checkLink()
         except:
             isError = True
             print('except '+str(i)+':', str(e))
+            sleep(1)
 
 
         totalBalance += currentBalance
