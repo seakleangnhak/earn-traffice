@@ -1,5 +1,5 @@
 import requests
-# import sys
+import sys
 import os
 import signal
 import numpy as np
@@ -155,7 +155,7 @@ def changeIP():
 
     vpn = np.random.choice(["CA", "DE", "HK", "GB", "US"])
     # os.system('windscribe disconnect')
-    os.system('windscribe connect ' + vpn)
+    # os.system('windscribe connect ' + vpn)
 
     # ip = checkIP()
 
@@ -166,9 +166,10 @@ def changeIP():
 
 
 def handler(signum, frame):
-    res = input("Ctrl-c was pressed. Do you really want to exit? y/n ")
-    if res == 'y':
-        exit(1)
+    # res = input("Ctrl-c was pressed. Do you really want to exit? y/n ")
+    # if res == 'y':
+    #     sys.exit(1)
+    sys.exit(1)
  
 signal.signal(signal.SIGINT, handler)
 
