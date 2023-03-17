@@ -216,7 +216,7 @@ while True:
 
         try:
             checkLink()
-        except:
+        except  Exception as e:
             isError = True
             print('except '+str(i)+':', str(e))
             sleep(1)
