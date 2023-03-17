@@ -94,7 +94,7 @@ def finish(token: str):
 
     else:
         isError = True
-        print("can't get new id, " + r.json())
+        print("can't get new id, " + r.text)
         # sys.exit("can't get new id, " + r.json())
 
 def addLink(link: str) -> bool:
@@ -154,7 +154,8 @@ def checkIP() -> str:
 def changeIP():
     # global lastIP
 
-    vpn = np.random.choice(["CA", "DE", "HK", "GB", "US"])
+    vpn = np.random.choice(['US', 'US-C', 'US-W'])
+    # vpn = np.random.choice(["CA", "DE", "HK", "GB", "US"])
     # os.system('windscribe disconnect')
     os.system('windscribe connect ' + vpn)
 
