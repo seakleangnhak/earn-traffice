@@ -1,6 +1,7 @@
 import requests
 # import sys
 import os
+import signal
 import numpy as np
 from fake_useragent import UserAgent
 
@@ -164,7 +165,12 @@ def changeIP():
     #     lastIP = ip
 
 
-
+def handler(signum, frame):
+    res = input("Ctrl-c was pressed. Do you really want to exit? y/n ")
+    if res == 'y':
+        exit(1)
+ 
+signal.signal(signal.SIGINT, handler)
 
 
 accountNum = input('Account Number: ')

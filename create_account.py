@@ -1,5 +1,6 @@
 import numpy as np
 import requests
+import signal
 from faker import Faker
 from fake_useragent import UserAgent
 
@@ -8,6 +9,13 @@ fake = Faker()
 ua = UserAgent()
 accountNum = input('Account Number: ')
 qtyAcc = int(input('QTY for new account: '))
+
+def handler(signum, frame):
+    res = input("Ctrl-c was pressed. Do you really want to exit? y/n ")
+    if res == 'y':
+        exit(1)
+ 
+signal.signal(signal.SIGINT, handler)
 
 for i in range(qtyAcc) :
 
