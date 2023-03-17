@@ -204,18 +204,18 @@ while True:
 
                 print('getting balance......')
                 currentBalance = balance()
-                print('current balance:', currentBalance)
+                print('current balance '+i+':', currentBalance)
                 print('total balance:', currentBalance + totalBalance)
 
         except:
             isError = True
-            print('except')
+            print('except', i)
 
         try:
             checkLink()
         except:
             isError = True
-            print('except')
+            print('except', i)
 
 
         totalBalance += currentBalance
