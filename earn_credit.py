@@ -156,7 +156,7 @@ def changeIP():
 
     vpn = np.random.choice(["CA", "DE", "HK", "GB", "US"])
     # os.system('windscribe disconnect')
-    # os.system('windscribe connect ' + vpn)
+    os.system('windscribe connect ' + vpn)
 
     # ip = checkIP()
 
